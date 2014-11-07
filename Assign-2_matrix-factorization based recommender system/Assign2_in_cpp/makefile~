@@ -1,0 +1,17 @@
+CC=g++ -g -O0
+INCLUDE-PATH=-I/usr/local/include #-Wall
+Link=-L/usr/local/lib -lgsl -lgslcblas -lm
+
+all: Project
+
+Assign2: CSR.o Dense_Matrix.o
+	$(CC) Assign2.cpp -o Project  Dense_Matrix.o CSR.o $(INCLUDE-PATH) $(Link)
+
+CSR.o:
+	$(CC) -c CSR.cpp
+
+Dense_Matrix.o:
+	$(CC) -c Dense_Matrix.cpp $(INCLUDE-PATH) $(Link)
+
+clean:
+	rm *.o Project
